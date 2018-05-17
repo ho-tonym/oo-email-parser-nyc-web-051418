@@ -1,5 +1,4 @@
 class EmailParser
-
   attr_reader :emails
 
   def initialize(emails)
@@ -7,14 +6,9 @@ class EmailParser
   end
 
   def parse
-    address = @emails.split
-    result = address.map do |element|
-      if element[-1] == ","
-         element[0..-2]
-      else
-        element
-      end
+    addresses = @emails.split
+    result = addresses.map {|address| address[-1] == "," ? address[0..-2] : address}
     result.uniq
   end
-  end
+
 end
